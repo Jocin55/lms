@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 
 function AuthPage() {
   const [activeTab, setActiveTab] = useState("signin");
+  console.log("VITE_API_URL FROM APP:", import.meta.env.VITE_API_URL);
   const {
     signInFormData,
     setSignInFormData,
@@ -46,6 +47,7 @@ function AuthPage() {
   }
 
   console.log(signInFormData);
+ 
 
   return (
     <div className="flex flex-col min-h-screen">
