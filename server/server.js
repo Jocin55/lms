@@ -46,7 +46,7 @@ app.use(
 
 // MongoDB connection with timeout
 if (!MONGO_URI) {
-  console.error("❌ MONGO_URI is not defined in environment variables");
+  console.error(" MONGO_URI is not defined in environment variables");
   console.error("Please create a .env file with MONGO_URI=your_mongodb_connection_string");
 } else {
   console.log("Attempting to connect to MongoDB...");

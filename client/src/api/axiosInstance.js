@@ -1,5 +1,7 @@
 import axios from "axios";
 
+console.log("API BASE URL:", import.meta.env.VITE_API_URL);
+
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 30000, 
@@ -28,13 +30,17 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.code === 'ECONNABORTED') {
-      error.message = 'Request timeout - please check your connection';
-    } else if (error.message === 'Network Error') {
-      error.message = 'Cannot connect to server. Please make sure the server is running on port 3000';
+    console.error("Axios error:", error);
+
+    if (error.code === "ECONNABORTED") {
+      error.message = "Request timeout. Server may be sleeping.";
+    } else if (!error.response) {
+      error.message = "Backend not reachable. Please try again.";
     }
+
     return Promise.reject(error);
   }
 );
+
 
 export default axiosInstance;
